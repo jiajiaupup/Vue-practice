@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sessionStrorage</title>
+  </head>
+  <body>
+    <h2>sessionStrorage</h2>
+    <button onclick="saveData()">点我保存一个数据</button>
+    <button onclick="readData()">点我读取一个数据</button>
+    <button onclick="deleteData()">点我删除一个数据</button>
+    <button onclick="deleteAllData()">点我清空全部数据</button>
+    <script type="text/javascript">
+      let p = { name: 'jiajia', age: 24 }
+      // 本地存储保存数据用 window.sessionStrorage.setItem() 可以省略window
+      function saveData() {
+        // 对象转字符串 JSON.stringify()
+        window.sessionStorage.setItem('msg', 'hello!')
+        window.sessionStorage.setItem('msg2', 666)
+        window.sessionStorage.setItem('Info', JSON.stringify(p))
+      }
+
+      // 本地存储读取数据用 window.sessionStrorage.getItem()
+      function readData() {
+        // 字符串转对象 JSON.parse()
+        console.log(window.sessionStorage.getItem('msg', 'hello!'))
+        console.log(window.sessionStorage.getItem('msg2', 666))
+
+         // JSON.parse(null)还是null 不是undefined
+        const result = window.sessionStorage.getItem('Info', p)
+        console.log(JSON.parse(result))
+       
+        //如果这里写的是一个没有的数据 那就是null
+        console.log(window.sessionStorage.getItem('msg3'))  //null
+      }
+
+      // 本地存储读删除数据用 window.sessionStorage.removeItem()
+      function deleteData() {
+        window.sessionStorage.removeItem('msg')
+      }
+
+      // 本地存储读清空数据用 window.sessionStorage.clear()
+      function deleteAllData() {
+        window.sessionStorage.clear()
+      }
+    </script>
+  </body>
+</html>
